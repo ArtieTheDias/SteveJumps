@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://c35awl2rl2wvq"]
+
+[ext_resource type="PackedScene" uid="uid://g5rsxhc7mjdi" path="res://steve.tscn" id="1_uf5c0"]
+[ext_resource type="PackedScene" uid="uid://qjgw4jxf36bf" path="res://floor.tscn" id="2_d7l6j"]
+
+[sub_resource type="Curve2D" id="Curve2D_k8i5h"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1151, 434, 0, 0, 0, 0, 0, 437)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_ek714"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1151, 289, 0, 0, 0, 0, -2, 309)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_wgreh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1151, 162, 0, 0, 0, 0, -2, 462)
+}
+point_count = 2
+
+[node name="Root" type="Node2D"]
+
+[node name="BulletTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Floor" parent="." instance=ExtResource("2_d7l6j")]
+position = Vector2(495, 501)
+
+[node name="Steve" parent="." instance=ExtResource("1_uf5c0")]
+position = Vector2(53, 401)
+
+[node name="BulletSpawns" type="Node2D" parent="."]
+
+[node name="Bullet1" type="Path2D" parent="BulletSpawns"]
+curve = SubResource("Curve2D_k8i5h")
+
+[node name="BulletGen1" type="PathFollow2D" parent="BulletSpawns/Bullet1"]
+position = Vector2(1151, 434)
+rotation = 3.13899
+
+[node name="Bullet2" type="Path2D" parent="BulletSpawns"]
+curve = SubResource("Curve2D_ek714")
+
+[node name="BulletGen2" type="PathFollow2D" parent="BulletSpawns/Bullet2"]
+position = Vector2(1151, 289)
+rotation = 3.12425
+
+[node name="Bullet3" type="Path2D" parent="BulletSpawns"]
+curve = SubResource("Curve2D_wgreh")
+
+[node name="BulletGen3" type="PathFollow2D" parent="BulletSpawns/Bullet3"]
+position = Vector2(1151, 162)
+rotation = 2.88705

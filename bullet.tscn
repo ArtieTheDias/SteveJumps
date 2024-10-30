@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://pkq0i5dcmn28"]
+
+[ext_resource type="Texture2D" uid="uid://dnl0iisfjgi4w" path="res://Assets/Sprites/Projectiles/green-laser.png" id="1_tuwwe"]
+
+[sub_resource type="GDScript" id="GDScript_uugwk"]
+script/source = "dextends RigidBody2D
+
+@export var speed = 500
+
+func _physics_process(delta):
+	velocity = transform.x * get_axis() * speed
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e50fu"]
+radius = 5.0
+height = 80.0
+
+[node name="Node2D" type="RigidBody2D"]
+script = SubResource("GDScript_uugwk")
+speed = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_e50fu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.2)
+texture = ExtResource("1_tuwwe")
